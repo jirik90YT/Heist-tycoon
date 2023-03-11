@@ -1,41 +1,47 @@
-# Compiled Lua sources
-luac.out
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Heist Tycoon💰", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+--Values
+_G.fastPay = true
+_G.autorebirth = true
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+--Functions
+function fastPay()
+    while _G.fastPay == true do
+        game:GetService("ReplicatedStorage").Knit.Services.TycoonService.RF.PayIncome:InvokeServer(game:GetService("Players").LocalPlayer)
+        wait(.00001)
+     end
+    end
 
-# Precompiled Headers
-*.gch
-*.pch
+    function autorebirth()
+        while _G.autorebirth == true do
+            game:GetService("ReplicatedStorage").Knit.Services.TycoonService.RF.Rebirth:InvokeServer()
+            wait(1.5)
+         end
+        end
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+--Tabs
+    local Main = Window:MakeTab({
+        Name = "Main",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+Main:AddToggle({
+	Name = "Fast PAY!",
+	Default = false,
+	Callback = function(Value)
+		_G.fastPay = Value
+        fastPay()
+	end    
+})
 
+Main:AddToggle({
+	Name = "AutoRebirth!",
+	Default = false,
+	Callback = function(Value)
+		_G.autorebirth = Value
+        autorebirth()
+	end    
+})

@@ -27,8 +27,14 @@ function fastPay()
         PremiumOnly = false
     })
 
+    local AutoFarm = Window:MakeTab({
+        Name = "AutoFarm",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
 
-Main:AddToggle({
+
+AutoFarm:AddToggle({
 	Name = "Fast PAY!",
 	Default = false,
 	Callback = function(Value)
@@ -37,7 +43,7 @@ Main:AddToggle({
 	end    
 })
 
-Main:AddToggle({
+AutoFarm:AddToggle({
 	Name = "AutoRebirth!",
 	Default = false,
 	Callback = function(Value)
